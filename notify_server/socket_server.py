@@ -35,7 +35,7 @@ class SocketServer:
             while True:
                 msg = client.receive()
                 try:
-                    json_data = json.loads(msg)
+                    json_data = json.loads(msg.decode())
                     msg_type = json_data['type']
                     if msg_type == 'subscribe':
                         def callback(event, c=client):

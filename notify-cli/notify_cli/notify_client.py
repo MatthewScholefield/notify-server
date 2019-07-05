@@ -15,7 +15,7 @@ class NotifyClient:
 
     def _run(self):
         while True:
-            event = json.loads(self.client.receive())
+            event = json.loads(self.client.receive().decode())
             for callback in self.subscribers.get(event['event'], []):
                 callback(event)
 

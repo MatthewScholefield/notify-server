@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='notify-server',
-    version='0.1.1',
+    version='0.1.2',
     description='A tool to broadcast notifications across various interfaces',
     url='https://github.com/matthewscholefield/notify-server',
     author='Matthew Scholefield',
