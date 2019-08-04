@@ -19,12 +19,6 @@ setup(
     keywords='notify server',
     packages=['notify_server'],
     install_requires=[
-        'Flask',
-        'flask-resto',
-        'ruko',
-        'flask-ruko',
-        'gunicorn',
-        'prettyparse',
         'notify-cli'
     ],
     entry_points={

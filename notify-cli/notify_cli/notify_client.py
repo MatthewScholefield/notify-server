@@ -1,6 +1,6 @@
 import json
 from socket import socket
-from threading import Thread
+from threading import Thread, Event
 
 from notify_cli.binary_protocol import BinaryProtocol
 
@@ -12,12 +12,17 @@ class NotifyClient:
         self.client = BinaryProtocol(sock)
         self.subscribers = {}
         self.thread = None
+        self.connection_lost_event = Event()
 
     def _run(self):
-        while True:
-            event = json.loads(self.client.receive().decode())
-            for callback in self.subscribers.get(event['event'], []):
-                callback(event)
+        try:
+            while True:
+                event = json.loads(self.client.receive().decode())
+                for callback in self.subscribers.get(event['event'], []):
+                    callback(event)
+        except ConnectionError:
+            self.thread = None
+            self.connection_lost_event.set()
 
     def subscribe(self, event, callback):
         if not self.thread:

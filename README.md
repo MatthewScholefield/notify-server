@@ -1,14 +1,15 @@
 # Notify Server
 
-*An event server with multiple interfaces*
+*A simple command line event server*
 
-This is an event server that can be interacted with via http and sockets.
+This is a server and client interface to send and receive
+notifications via cli or Python over a socket.
 
 ## Usage
 
 Start the server:
 ```bash
-notify-server localhost:8080 localhost:9000
+notify-server localhost:9080
 ```
 Subscribe to an event via cli:
 ```bash
@@ -40,32 +41,15 @@ while True:
     sleep(1)
 ```
 
-Send an event via Curl:
-```bash
-curl -X POST http://localhost:8080/event/terminal_event -d "hello from the web"
-```
-
-
 ## Installation
-
-Dependencies:
-
- - [ruko-server](http://github.com/rukodb/ruko-server)
- 
-```bash
-git clone http://github.com/rukodb/ruko-server
-cd ruko-server && mkdir build && cd build
-cmake .. && make -j4
-sudo make install  # Make sure you install it to your PATH
-```
 
 Installation:
 
 ```bash
-pip install notify-server  # Inside a virtualenv is recommended
+pip3 install notify-server
 ```
 
 If you are using the client code in a project you only need:
 ```bash
-pip install notify-client
+pip3 install notify-client
 ```

@@ -3,7 +3,7 @@ import socket
 from threading import Thread
 
 from notify_cli.binary_protocol import BinaryProtocol
-from notify_server.events import EventSystem
+from notify_server.event_system import EventSystem
 
 
 class SocketServer:
