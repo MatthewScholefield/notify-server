@@ -9,6 +9,7 @@ from notify_server.socket_server import SocketServer
 def main():
     parser = ArgumentParser(description='A server to transfer notifications')
     parser.add_argument('server_address', help='The address to host the socket server')
+    parser.add_argument('-p', '--print-messages', help='Print all events that flow through the server', action='store_true')
     args = parser.parse_args()
     try:
         socket_host, socket_port = args.server_address.split(':')
@@ -17,7 +18,7 @@ def main():
         parser.error('Invalid server address')
         raise SystemExit(1)
 
-    event_system = EventSystem()
+    event_system = EventSystem(args.print_messages)
     socket_server = SocketServer(socket_host, socket_port, event_system)
     socket_server.start()
     atexit.register(socket_server.stop)
